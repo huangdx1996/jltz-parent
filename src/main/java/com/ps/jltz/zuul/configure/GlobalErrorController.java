@@ -35,10 +35,10 @@ public class GlobalErrorController extends AbstractErrorController{
     public static final Map<String, String> FORBIDDEN_MAP = new LinkedHashMap<>();
     static {
         ERROR_MAP.put("resCode", "500");
-        ERROR_MAP.put("msg", "系统错误");
+        ERROR_MAP.put("msg", "Gateway Error");
 
         FORBIDDEN_MAP.put("resCode", "403");
-        FORBIDDEN_MAP.put("msg", "没有访问权限");
+        FORBIDDEN_MAP.put("msg", "Forbidden Error");
     }
 /*
 
