@@ -20,11 +20,8 @@ public class CrossInterceptor implements HandlerInterceptor {
         response.setHeader("Access-Control-Allow-Headers",
                 "Origin, No-Cache, X-Requested-With, If-Modified-Since, Last-Modified, Expires, Content-Type,Authorization,User-Agent,Auth_Token, Pragma,Cache-Control");
         response.setHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE");
-        /*String authorization = request.getHeader("Authorization");
-        System.out.println(authorization = authorization.substring(authorization.indexOf("Bearer") + 7));
-        JWTInfo jwtInfo = jwtTokenClient.checkAuthenticationToken(authorization);*/
         if (request.getMethod().equals("OPTIONS")) {
-            return true;    
+            return true;
         }
         return true;
     }
