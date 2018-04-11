@@ -18,7 +18,7 @@ public class CrossInterceptor implements HandlerInterceptor {
 
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Headers",
-                "Origin, No-Cache, X-Requested-With, If-Modified-Since, Last-Modified, Expires, Content-Type,Authorization,User-Agent,Auth_Token, Pragma,Cache-Control");
+                "Origin, No-Cache, X-Requested-With, If-Modified-Since, Last-Modified, Expires, Content-Type,Authorization,User-Agent,Auth_Token, Pragma,Cache-Control,VERSION-CODE, REQ-SOURCE");
         response.setHeader("Access-Control-Allow-Methods","GET, POST, PUT, DELETE");
         if (request.getMethod().equals("OPTIONS")) {
             return true;

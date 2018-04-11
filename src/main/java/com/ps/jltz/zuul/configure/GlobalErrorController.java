@@ -1,7 +1,7 @@
 package com.ps.jltz.zuul.configure;
 
-import com.netflix.eureka.util.MeasuredRate;
-import org.apache.http.HttpRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.web.AbstractErrorController;
 import org.springframework.boot.autoconfigure.web.ErrorAttributes;
@@ -25,6 +25,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/error")
 public class GlobalErrorController extends AbstractErrorController{
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalErrorController.class);
 
     @Autowired
     public GlobalErrorController(ErrorAttributes errorAttributes) {
@@ -57,9 +58,9 @@ public class GlobalErrorController extends AbstractErrorController{
 
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity error(HttpServletRequest request) {
-
         HttpStatus status = getStatus(request);
 
+        LOGGER.error("错误状态码: " + status.value() + "\t请求路径: " + request.getRequestURI());
         if (status.is5xxServerError()) {
             return ResponseEntity.ok(ERROR_MAP);
         }
