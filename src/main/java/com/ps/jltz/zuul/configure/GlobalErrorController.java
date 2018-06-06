@@ -34,12 +34,16 @@ public class GlobalErrorController extends AbstractErrorController{
 
     public static final Map<String, String> ERROR_MAP = new LinkedHashMap<>();
     public static final Map<String, String> FORBIDDEN_MAP = new LinkedHashMap<>();
+    public static final Map<String, String> NOT_FOUND = new LinkedHashMap<>();
     static {
         ERROR_MAP.put("resCode", "500");
         ERROR_MAP.put("msg", "Gateway Error");
 
         FORBIDDEN_MAP.put("resCode", "403");
         FORBIDDEN_MAP.put("msg", "Forbidden Error");
+
+        NOT_FOUND.put("resCode", "404");
+        NOT_FOUND.put("msg", "Not Found");
     }
 /*
 
@@ -63,6 +67,9 @@ public class GlobalErrorController extends AbstractErrorController{
         LOGGER.error("错误状态码: " + status.value() + "\t请求路径: " + request.getRequestURI());
         if (status.is5xxServerError()) {
             return ResponseEntity.ok(ERROR_MAP);
+        }
+        if (status.value() == 404) {
+            return ResponseEntity.ok(NOT_FOUND);
         }
         return ResponseEntity.ok(FORBIDDEN_MAP);
     }
